@@ -12,6 +12,13 @@ namespace PortalKorepetycyjny
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute(url: "UsersAndRoles/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "ManageUsers",
+                url: "Admin/ManageUsers/{action}",
+                defaults: new { controller = "UsersAndRoles", action = "Index" }
+            );
 
             routes.MapRoute(
                 name: "Default",
