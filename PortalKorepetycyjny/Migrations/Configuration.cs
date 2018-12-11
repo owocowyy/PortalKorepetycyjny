@@ -9,7 +9,7 @@ namespace PortalKorepetycyjny.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(PortalKorepetycyjny.Models.ApplicationDbContext context)

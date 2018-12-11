@@ -29,5 +29,9 @@ namespace PortalKorepetycyjny.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Coach> Coaches { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<CoachReview> CoachReviews { get; set; }
     }
 }
