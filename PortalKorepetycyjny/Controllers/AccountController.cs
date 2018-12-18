@@ -151,7 +151,13 @@ namespace PortalKorepetycyjny.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                ApplicationUser user;
+
+                if(model.AccountType == "student")
+                    user = new Student { UserName = model.Email, Email = model.Email };
+                else
+                    user = new Coach { UserName = model.Email, Email = model.Email };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
