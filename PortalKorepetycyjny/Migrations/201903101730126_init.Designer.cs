@@ -13,7 +13,7 @@ namespace PortalKorepetycyjny.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201812111940224_init"; }
+            get { return "201903101730126_init"; }
         }
         
         string IMigrationMetadata.Source
