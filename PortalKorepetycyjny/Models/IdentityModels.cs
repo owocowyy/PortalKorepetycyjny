@@ -33,5 +33,9 @@ namespace PortalKorepetycyjny.Models
         public DbSet<Coach> Coaches { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<CoachReview> CoachReviews { get; set; }
+        public DbSet<Availability> Availabilities { get; set; }
+        public DbSet<Status> Statuses{ get; set; }
+        public DbSet<StudentAdvertisment> StudentAdvertisments{ get; set; }
+        public DbSet<Subject> Subjects { get; set; }
     }
 }

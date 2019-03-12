@@ -193,13 +193,22 @@
     <Compile Include="Migrations\201903101730126_init.Designer.cs">
       <DependentUpon>201903101730126_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903121429430_UpdatedModels.cs" />
+    <Compile Include="Migrations\201903121429430_UpdatedModels.Designer.cs">
+      <DependentUpon>201903121429430_UpdatedModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Advertisment.cs" />
+    <Compile Include="Models\Availability.cs" />
     <Compile Include="Models\Coach.cs" />
     <Compile Include="Models\CoachReview.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentAdvertisment.cs" />
+    <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\UsersInRoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -294,6 +303,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903101730126_init.resx">
       <DependentUpon>201903101730126_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903121429430_UpdatedModels.resx">
+      <DependentUpon>201903121429430_UpdatedModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
