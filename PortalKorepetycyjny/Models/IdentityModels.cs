@@ -37,5 +37,7 @@ namespace PortalKorepetycyjny.Models
         public DbSet<Status> Statuses{ get; set; }
         public DbSet<StudentAdvertisment> StudentAdvertisments{ get; set; }
         public DbSet<Subject> Subjects { get; set; }
+
+        public System.Data.Entity.DbSet<PortalKorepetycyjny.Models.Advertisment> Advertisments { get; set; }
     }
 }
