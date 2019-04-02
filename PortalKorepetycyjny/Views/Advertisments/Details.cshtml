@@ -1,4 +1,6 @@
 ﻿@model PortalKorepetycyjny.Models.Advertisment
+@using Microsoft.AspNet.Identity
+
 
 @{
     ViewBag.Title = "Details";
@@ -10,44 +12,49 @@
     <h4>Advertisment</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>@{ 
-            string text = Model.Coach.Name + " " + Model.Coach.Surname;}
-            
+        <dt>
+            @{
+                string text = Model.Coach.Name + " " + Model.Coach.Surname;}
+
         @Html.DisplayNameFor(model => text)
- 
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => text)
-        </dd>
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => text)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Title)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PublicationDate)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Title)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PublicationDate)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.PublicationDate)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.PublicationDate)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
 
-    </dl>
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+
+</dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.Identity.GetUserId() == Model.CoachId)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    }
+    |
+    @Html.ActionLink("Back to List", "Index", "Home", new { area = "" }, null)
 </p>
