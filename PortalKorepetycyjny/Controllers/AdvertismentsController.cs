@@ -17,6 +17,7 @@ namespace PortalKorepetycyjny.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
         // GET: Advertisments
         public ActionResult Index()
         {
@@ -30,6 +31,7 @@ namespace PortalKorepetycyjny.Controllers
         }
 
         // GET: Advertisments/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -88,8 +90,11 @@ namespace PortalKorepetycyjny.Controllers
         }
 
         // GET: Advertisments/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
+            var loggedInUser = User.Identity.GetUserId();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -99,7 +104,18 @@ namespace PortalKorepetycyjny.Controllers
             {
                 return HttpNotFound();
             }
-            return View(advertisment);
+            
+
+            if(advertisment.CoachId!= loggedInUser)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            else {
+                return View(advertisment);
+
+            }
+            
+
         }
 
         // POST: Advertisments/Edit/5
@@ -117,6 +133,7 @@ namespace PortalKorepetycyjny.Controllers
             }
             return View(advertisment);
         }
+
 
         // GET: Advertisments/Delete/5
         public ActionResult Delete(int? id)
