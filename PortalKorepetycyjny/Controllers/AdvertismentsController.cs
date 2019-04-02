@@ -7,10 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using PortalKorepetycyjny.Models;
 
 namespace PortalKorepetycyjny.Controllers
 {
+    [Authorize]
     public class AdvertismentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,11 +20,17 @@ namespace PortalKorepetycyjny.Controllers
         // GET: Advertisments
         public ActionResult Index()
         {
+            var currentUser = db.Coaches.Find(User.Identity.GetUserId());   //Jeśli użytkownik inny niż Coach to redirect na Home
+            if(currentUser == null)
+            {
+                return Redirect("/home");
+            }
+
             return View(db.Advertisments.ToList());
         }
 
         // GET: Advertisments/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -33,11 +41,28 @@ namespace PortalKorepetycyjny.Controllers
             {
                 return HttpNotFound();
             }
+
+            string currentId = id.ToString();
+
+            var model = (from a in db.Advertisments
+                         join c in db.Coaches on a.CoachId equals c.Id
+                         orderby a.Title
+                         where a.CoachId == currentId
+                         select new AdvertisementDTO
+                         {
+                             Id = a.CoachId,
+                             CoachNameAndSurname = c.Name + " " + c.Surname,
+                             PublicationDate = a.PublicationDate,
+                             Title = a.Title,
+                             Description = a.Description
+                         });
+
+            //return View(model);
+
             return View(advertisment);
         }
 
         // GET: Advertisments/Create
-        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -48,17 +73,13 @@ namespace PortalKorepetycyjny.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public ActionResult Create([Bind(Include = "Id,Title,PublicationDate,Description")] Advertisment advertisment)
+        public ActionResult Create([Bind(Include = "Title,Description")] Advertisment advertisment)
         {
             if (ModelState.IsValid)
             {
-                advertisment.Id = Guid.NewGuid();
+                advertisment.CoachId = User.Identity.GetUserId();
                 advertisment.PublicationDate = DateTime.Now;
-                var userName = User.Identity.GetUserId();
-                advertisment.CoachId = db.Coaches.FirstOrDefault(c => c.Id == userName);
                 db.Advertisments.Add(advertisment);
-                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -67,7 +88,7 @@ namespace PortalKorepetycyjny.Controllers
         }
 
         // GET: Advertisments/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +107,7 @@ namespace PortalKorepetycyjny.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,PublicationDate,Description")] Advertisment advertisment)
+        public ActionResult Edit([Bind(Include = "Id,CoachId,Title,PublicationDate,Description")] Advertisment advertisment)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +119,7 @@ namespace PortalKorepetycyjny.Controllers
         }
 
         // GET: Advertisments/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -115,7 +136,7 @@ namespace PortalKorepetycyjny.Controllers
         // POST: Advertisments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Advertisment advertisment = db.Advertisments.Find(id);
             db.Advertisments.Remove(advertisment);

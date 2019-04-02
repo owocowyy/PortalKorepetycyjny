@@ -5,14 +5,12 @@ using System.Web;
 
 namespace PortalKorepetycyjny.Models
 {
-    public class Advertisment
+    public class AdvertisementDTO
     {
-        public int Id { get; set; }
-        public string CoachId { get; set; }
-        public string Title { get; set; }
+        public string Id { get; set; }
+        public string CoachNameAndSurname { get; set; }
         public DateTime PublicationDate { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
-
-        public virtual Coach Coach { get; set; }
     }
 }

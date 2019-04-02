@@ -7,13 +7,13 @@ namespace PortalKorepetycyjny.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UpdatedModels : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedModels));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903121429430_UpdatedModels"; }
+            get { return "201904021657181_init"; }
         }
         
         string IMigrationMetadata.Source

@@ -7,7 +7,7 @@ namespace PortalKorepetycyjny.Models
 {
     public class Availability
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public Coach Coach { get; set; }
         public string Name { get; set; }
         public DateTime Day { get; set; }

@@ -7,7 +7,7 @@ namespace PortalKorepetycyjny.Models
 {
     public class StudentAdvertisment
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public Student Creator { get; set; }
         public Subject SbujectName { get; set; }
         public string Descryption { get; set; }

@@ -82,6 +82,16 @@ namespace PortalKorepetycyjny.Models
 
         [Required]
         public string AccountType { get; set; }
+
+        [Required]
+        [Display(Name = "Imie")]
+        [StringLength(30)]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        [StringLength(30)]
+        public string Surname { get; set; }
     }
 
     public class ResetPasswordViewModel

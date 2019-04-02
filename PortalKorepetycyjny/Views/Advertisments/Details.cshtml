@@ -10,6 +10,17 @@
     <h4>Advertisment</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>@{ 
+            string text = Model.Coach.Name + " " + Model.Coach.Surname;}
+            
+        @Html.DisplayNameFor(model => text)
+ 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => text)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>

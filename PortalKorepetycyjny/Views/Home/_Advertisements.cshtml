@@ -1,0 +1,43 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<PortalKorepetycyjny.Models.Advertisment>
+<div id="productList">
+
+    <div class="pagedList" data-advertisement-target="#advertisementList">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+       PagedListRenderOptions.MinimalWithItemCountText)
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Imie i nazwisko
+            </th>
+            <th>
+                Tytuł
+            </th>
+            <th>
+                Opis
+            </th>
+        </tr>
+
+
+
+        @foreach (var item in Model)
+        {
+            string text = item.Coach.Name + " " + item.Coach.Surname;
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

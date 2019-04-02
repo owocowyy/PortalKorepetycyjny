@@ -13,9 +13,9 @@ namespace PortalKorepetycyjny.Models
 
         public ICollection<Subject> Subjects { get; set; }
 
-
-        public string Name { get; set; }
-        public string Surname { get; set; }
-
+        public static explicit operator int(Coach v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
