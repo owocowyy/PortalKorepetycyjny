@@ -119,13 +119,26 @@ namespace PortalKorepetycyjny.Controllers
         }
 
         // GET: Advertisments/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Advertisment advertisment = db.Advertisments.Find(id);
+            var loggedInUser = User.Identity.GetUserId();
+
+            if (advertisment.CoachId != loggedInUser)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            else
+            {
+                return View(advertisment);
+
+            }
             if (advertisment == null)
             {
                 return HttpNotFound();
@@ -136,6 +149,7 @@ namespace PortalKorepetycyjny.Controllers
         // POST: Advertisments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Advertisment advertisment = db.Advertisments.Find(id);
