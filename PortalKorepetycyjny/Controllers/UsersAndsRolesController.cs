@@ -236,25 +236,22 @@ namespace PortalKorepetycyjny.Controllers
         public ActionResult UsersWithRoles()
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            var usersWithRoles = (from user in db.Users
-                                  select new
+
+            var model = (from p in db.Users select p).ToList();
+            var usersWithRoles = (from user in model
+                                  select new UsersInRoleViewModel
                                   {
                                       UserId = user.Id,
-                                      Username = user.UserName,
                                       Email = user.Email,
-                                      RoleNames = (from userRole in user.Roles
-                                                   join role in db.Roles on userRole.RoleId
-                                                   equals role.Id
-                                                   select role.Name).ToList()
-                                  }).ToList().Select(p => new UsersInRoleViewModel()
+                                      Name = user.Name,
+                                      Surname = user.Surname,
+                                  }).ToList();
 
-                                  {
-                                      UserId = p.UserId,
-                                      Username = p.Username,
-                                      Email = p.Email,
-                                      Role = string.Join(",", p.RoleNames)
-                                  });
 
+           for(int i = 0; i < usersWithRoles.Count; i++)
+            {
+                usersWithRoles.ElementAt(i).AccountType = model.ElementAt(i).GetAccountType();
+            }
 
             return View(usersWithRoles);
         }

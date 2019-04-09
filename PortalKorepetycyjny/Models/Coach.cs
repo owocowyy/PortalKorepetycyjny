@@ -17,5 +17,9 @@ namespace PortalKorepetycyjny.Models
         {
             throw new NotImplementedException();
         }
+        public override string GetAccountType()
+        {
+            return "Coach";
+        }
     }
 }

@@ -9,5 +9,9 @@ namespace PortalKorepetycyjny.Models
     {
         public ICollection<CoachReview> CoachReviews { get; set; }
         public ICollection<StudentAdvertisment> AdvertismentList { get; set; }
+        public override string GetAccountType()
+        {
+            return "Student";
+        }
     }
 }

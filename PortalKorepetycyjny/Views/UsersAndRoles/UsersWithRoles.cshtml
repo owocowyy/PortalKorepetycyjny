@@ -12,13 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Role)
+            @Html.DisplayNameFor(model => model.AccountType)
         </th>
         <th></th>
     </tr>
@@ -27,13 +24,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Role)
+                @Html.DisplayFor(modelItem => item.AccountType)
             </td>
             <td>
                 @Html.ActionLink("Edytuj", "EditUser", new { id = item.UserId }) |
