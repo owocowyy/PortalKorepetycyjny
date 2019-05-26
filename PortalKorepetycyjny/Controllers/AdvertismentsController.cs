@@ -75,10 +75,12 @@ namespace PortalKorepetycyjny.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Title,Description")] Advertisment advertisment)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && User is Coach)
             {
+
                 advertisment.CoachId = User.Identity.GetUserId();
                 advertisment.PublicationDate = DateTime.Now;
                 db.Advertisments.Add(advertisment);

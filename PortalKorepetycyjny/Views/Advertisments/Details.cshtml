@@ -5,50 +5,34 @@
 @{
     ViewBag.Title = "Details";
 }
+@{
+    string text = Model.Coach.Name + " " + Model.Coach.Surname;
+}
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Title)</h2>
 
 <div>
-    <h4>Advertisment</h4>
+    <h4>@Html.DisplayFor(model => text)</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @{
-                string text = Model.Coach.Name + " " + Model.Coach.Surname;}
+            Data Publikacji
+        </dt>
 
-        @Html.DisplayNameFor(model => text)
+        <dd>
+            @Html.DisplayFor(model => model.PublicationDate)
+        </dd>
 
-    </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
 
-    <dd>
-        @Html.DisplayFor(model => text)
-    </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.Title)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.Title)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.PublicationDate)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.PublicationDate)
-    </dd>
-
-    <dt>
-        @Html.DisplayNameFor(model => model.Description)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.Description)
-    </dd>
-
-</dl>
+    </dl>
 </div>
 <p>
     @if (User.Identity.GetUserId() == Model.CoachId)
