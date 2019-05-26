@@ -216,7 +216,6 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentAdvertisment.cs" />
-    <Compile Include="Models\StudentAdvertismentDTO.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\UsersInRoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
