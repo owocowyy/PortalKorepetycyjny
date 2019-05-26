@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AdvertismentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StudentAdvertismentsController.cs" />
     <Compile Include="Controllers\UsersAndsRolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,6 +216,7 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentAdvertisment.cs" />
+    <Compile Include="Models\StudentAdvertismentDTO.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\UsersInRoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -340,6 +342,11 @@
     <Content Include="Views\Advertisments\Edit.cshtml" />
     <Content Include="Views\Advertisments\Index.cshtml" />
     <Content Include="Views\Home\_Advertisements.cshtml" />
+    <Content Include="Views\StudentAdvertisments\Create.cshtml" />
+    <Content Include="Views\StudentAdvertisments\Delete.cshtml" />
+    <Content Include="Views\StudentAdvertisments\Details.cshtml" />
+    <Content Include="Views\StudentAdvertisments\Edit.cshtml" />
+    <Content Include="Views\StudentAdvertisments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
