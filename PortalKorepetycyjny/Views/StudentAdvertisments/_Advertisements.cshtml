@@ -1,0 +1,50 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Microsoft.AspNet.Identity
+@model IPagedList<PortalKorepetycyjny.Models.StudentAdvertisment>
+<div id="productList">
+
+    <div class="pagedList" data-advertisement-target="#advertisementList">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+       PagedListRenderOptions.MinimalWithItemCountText)
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                Description
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                AdvertismentDate
+            </th>
+        </tr>
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descryption)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdvertismentDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "StudentAdvertisments", new { id = item.Id }, null)
+                    @Html.ActionLink("Delete", "Delete", "StudentAdvertisments", new { id = item.Id }, null)
+                    @Html.ActionLink("Details", "Details", "StudentAdvertisments", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

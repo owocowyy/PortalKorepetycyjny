@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using PortalKorepetycyjny.Models;
+using PagedList;
 
 namespace PortalKorepetycyjny.Controllers
 {
@@ -19,15 +20,32 @@ namespace PortalKorepetycyjny.Controllers
 
 
         // GET: Advertisments
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var currentUser = db.Coaches.Find(User.Identity.GetUserId());   //Jeśli użytkownik inny niż Coach to redirect na Home
+            /*var currentUser = db.Coaches.Find(User.Identity.GetUserId());   //Jeśli użytkownik inny niż Coach to redirect na Home
             if(currentUser == null)
             {
                 return Redirect("/home");
-            }
+            }*/
 
-            return View(db.Advertisments.ToList());
+            /*var model = (from a in db.Advertisments
+                         join c in db.Coaches on a.CoachId equals c.Id
+                         orderby a.Title
+                        where a.CoachId == c.Id
+                         select new AdvertisementDTO
+                         {
+                             Id = a.CoachId,
+                             CoachNameAndSurname = c.Name + " " + c.Surname,
+                             PublicationDate = a.PublicationDate,
+                             Title = a.Title,
+                             Description = a.Description
+                         }).ToPagedList(page, 10);*/
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Advertisements", db.Advertisments.OrderBy(r => r.Title).ToPagedList(page, 10));
+            }
+            return View(db.Advertisments.OrderBy(r => r.Title).ToPagedList(page, 10));
         }
 
         // GET: Advertisments/Details/5

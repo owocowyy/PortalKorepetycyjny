@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using PortalKorepetycyjny.Models;
+using PagedList;
 
 namespace PortalKorepetycyjny.Controllers
 {
@@ -16,9 +17,13 @@ namespace PortalKorepetycyjny.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: StudentAdvertisments
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            return View(db.StudentAdvertisments.ToList());
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Advertisements", db.StudentAdvertisments.OrderBy(r => r.Title).ToPagedList(page, 10));
+            }
+            return View(db.StudentAdvertisments.OrderBy(r => r.Title).ToPagedList(page, 10));
         }
 
         // GET: StudentAdvertisments/Details/5

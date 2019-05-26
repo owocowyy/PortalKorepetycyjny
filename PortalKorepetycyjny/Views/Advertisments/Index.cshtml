@@ -1,59 +1,14 @@
 ﻿@model IEnumerable<PortalKorepetycyjny.Models.Advertisment>
-@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h3>Szukaj</h3>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.Display("Name")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublicationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
+<form method="get" action="@Url.Action("Index")"
+      data-advertisement-ajax="true" data-advertisement-target="#advertisementList">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Szukaj" />
+</form>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @{
-                    string text = item.Coach.Name + " " + item.Coach.Surname;}
-
-                @Html.DisplayFor(modelItem => item.Coach.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublicationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-
-                @if (User.Identity.GetUserId()== item.CoachId)
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                }
-            </td>
-        </tr>
-    }
-
-</table>
+@Html.Partial("_Advertisements", Model)

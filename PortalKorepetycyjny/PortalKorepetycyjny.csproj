@@ -346,6 +346,8 @@
     <Content Include="Views\StudentAdvertisments\Details.cshtml" />
     <Content Include="Views\StudentAdvertisments\Edit.cshtml" />
     <Content Include="Views\StudentAdvertisments\Index.cshtml" />
+    <Content Include="Views\Advertisments\_Advertisements.cshtml" />
+    <Content Include="Views\StudentAdvertisments\_Advertisements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
