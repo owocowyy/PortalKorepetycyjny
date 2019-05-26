@@ -11,7 +11,6 @@ namespace PortalKorepetycyjny.Models
 
         public ICollection<Advertisment> Advertisments { get; set; }
 
-        public ICollection<Subject> Subjects { get; set; }
 
         public static explicit operator int(Coach v)
         {
