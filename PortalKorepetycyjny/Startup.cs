@@ -1,5 +1,9 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Owin;
 using Owin;
+using PortalKorepetycyjny.Models;
+using System.Web.Configuration;
 
 [assembly: OwinStartupAttribute(typeof(PortalKorepetycyjny.Startup))]
 namespace PortalKorepetycyjny
@@ -10,5 +14,6 @@ namespace PortalKorepetycyjny
         {
             ConfigureAuth(app);
         }
+
     }
 }

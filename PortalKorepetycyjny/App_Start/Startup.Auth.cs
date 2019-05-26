@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Configuration;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -54,9 +55,12 @@ namespace PortalKorepetycyjny
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            string key = WebConfigurationManager.AppSettings["FacebookAppId"];
+            string secret = WebConfigurationManager.AppSettings["FacebookSecretKey"];
+
+            app.UseFacebookAuthentication(
+               appId: key,
+               appSecret: secret);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
