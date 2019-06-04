@@ -12,39 +12,38 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 
-    <table class="table">
-        <tr>
-            <th>
-                Description
-            </th>
-            <th>
-                Title
-            </th>
-            <th>
-                AdvertismentDate
-            </th>
-        </tr>
+    <div class="container">
+        <div class="iconcontainer">
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="iconbox">
+                            <div class="iconbox-icon">
+                                <span class="glyphicon glyphicon-tasks"></span>
+                            </div>
+                            <div class="featureinfo">
+                                <h4 class="text-center">@Html.DisplayFor(modelItem => item.Title)</h4>
+                                <h5 class="text-center">@Html.DisplayFor(modelItem => item.AdvertismentDate)</h5>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Descryption)
+                                </p>
+
+                                <a class="btn btn-default btn-sm" href="@Url.Action("Edit", "StudentAdvertisments", new { id = item.Id })" role="button">Edit</a>
+                                <a class="btn btn-default btn-sm" href="@Url.Action("Delete", "StudentAdvertisment", new { id = item.Id })" role="button">Delete</a>
+                               
+                                <a class="btn btn-default btn-sm" href="@Url.Action("Details", "StudentAdvertisments", new { id = item.Id })" role="button">Details</a>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descryption)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AdvertismentDate)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "StudentAdvertisments", new { id = item.Id }, null)
-                    @Html.ActionLink("Delete", "Delete", "StudentAdvertisments", new { id = item.Id }, null)
-                    @Html.ActionLink("Details", "Details", "StudentAdvertisments", new { id = item.Id }, null)
-                </td>
-            </tr>
-        }
-    </table>
+                }
+
+            </div>
+        </div>
+    </div>
 </div>

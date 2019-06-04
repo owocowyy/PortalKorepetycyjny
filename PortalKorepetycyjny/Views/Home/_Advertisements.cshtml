@@ -12,45 +12,44 @@
         @Html.ActionLink("Create New", "Create", "Advertisments")
     </p>
 
-    <table class="table">
-        <tr>
-            <th>
-                Imie i nazwisko
-            </th>
-            <th>
-                Tytuł
-            </th>
-            <th>
-                Opis
-            </th>
-        </tr>
+    <div class="container">
+        <div class="iconcontainer">
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    string text = item.Coach.Name + " " + item.Coach.Surname;
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="iconbox">
+                            <div class="iconbox-icon">
+                                <span class="glyphicon glyphicon-book"></span>
+                            </div>
+                            <div class="featureinfo">
+                                <h4 class="text-center">@Html.DisplayFor(modelItem => item.Title)</h4>
+                                <h5 class="text-center">@Html.DisplayFor(modelItem => text)</h5>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </p>
+
+                                @if (User.Identity.GetUserId() == item.CoachId)
+                                {
+                                    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", "Advertisments", new { id = item.Id })" role="button">Edit</a>
+                                    <a class="btn btn-default btn-sm" href="@Url.Action("Delete", "Advertisment", new { id = item.Id })" role="button">Delete</a>
+
+                                }
+
+                                <a class="btn btn-default btn-sm" href="@Url.Action("Details", "Advertisments", new { id = item.Id })" role="button">Details</a>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-        @foreach (var item in Model)
-        {
-            string text = item.Coach.Name + " " + item.Coach.Surname;
-
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => text)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @if (User.Identity.GetUserId() == item.CoachId)
-                    {
-                        @Html.ActionLink("Edit", "Edit", "Advertisments", new { id = item.Id }, null)
-                        @Html.ActionLink("Delete", "Delete", "Advertisments", new { id = item.Id }, null)
-                    }
-
-                    @Html.ActionLink("Details", "Details", "Advertisments", new { id = item.Id }, null)
-                </td>
-            </tr>
-        }
-    </table>
+                }
+             
+            </div>
+        </div>
+    </div>
 </div>

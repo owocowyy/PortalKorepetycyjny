@@ -1,0 +1,13 @@
+﻿.navbar-fixed-top {
+    background-color: #33b735;
+    border-color: #ffffff;
+}
+
+.navbar-fixed-top .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-fixed-top .navbar-nav > li > a:hover,
+.navbar-fixed-top .navbar-nav > li > a:focus {
+    color: #c4c4c4;
+}

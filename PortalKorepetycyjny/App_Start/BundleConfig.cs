@@ -24,7 +24,11 @@ namespace PortalKorepetycyjny
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Layout.css",
+                      "~/Content/Site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/index").Include(
+                      "~/Content/Index.css"));
         }
     }
 }
