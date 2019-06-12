@@ -10,7 +10,7 @@ namespace PortalKorepetycyjny.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            //AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(PortalKorepetycyjny.Models.ApplicationDbContext context)
