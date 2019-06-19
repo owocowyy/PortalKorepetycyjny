@@ -96,7 +96,7 @@ namespace PortalKorepetycyjny.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "Title,Description")] Advertisment advertisment)
         {
-            if (ModelState.IsValid && User is Coach)
+            if (ModelState.IsValid )
             {
 
                 advertisment.CoachId = User.Identity.GetUserId();
